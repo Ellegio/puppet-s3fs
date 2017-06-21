@@ -12,5 +12,5 @@
   s3fs::config { 'mybucket':
     bucket     => 'com.myorg.mybucket',
     mountpoint => '/mnt/mybucket',
-    options    => 'passwd_file=/root/.passwd-s3fs,allow_other',
+    options    => 'passwd_file=/root/.passwd-s3fs,allow_other,use_sse=1',
   }

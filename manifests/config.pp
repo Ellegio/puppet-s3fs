@@ -1,4 +1,4 @@
-define s3fs::config( $bucket, $mountpoint, $options = 'allow_other' ) {
+define s3fs::config( $bucket, $mountpoint, $options = 'allow_other,use_sse=1' ) {
 
   if !defined(File["$mountpoint"]) {
     file {"$mountpoint":
