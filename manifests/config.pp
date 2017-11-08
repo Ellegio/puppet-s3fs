@@ -1,7 +1,11 @@
 define s3fs::config( $bucket, $mountpoint, $options = 'allow_other,use_sse=1' ) {
 
   if !defined(File["$mountpoint"]) {
-    file {"$mountpoint":
+    $path_parents = all_parents($mountpoint) 
+    file { $path_parents:
+      ensure => 'directory',
+     }
+    file { $mountpoint:
       ensure => directory,
     }
   }
