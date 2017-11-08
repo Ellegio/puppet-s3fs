@@ -11,6 +11,9 @@ class s3fs::install {
     source      => "${s3fs::tarball_url}/${s3fs_tarball}",
     destination => "${s3fs::tarball_dir}/${s3fs_tarball}",
   }
+  file { "${s3fs::tarball_dir}/s3fs-${s3fs::s3fs_version}",
+    ensure => directory
+  }
   exec {'extract-s3fs':
     cwd     => $s3fs::tarball_dir,
     command => "tar zxf ${s3fs_tarball}",
