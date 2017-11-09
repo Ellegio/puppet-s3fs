@@ -18,6 +18,7 @@ class s3fs (
 
 
   anchor { '::s3fs::begin': } ->
+  class { '::s3fs::params': } ->
   class { '::s3fs::dependencies': } ->
   class { '::s3fs::fuse': } ->
   class { '::s3fs::install': } ->
