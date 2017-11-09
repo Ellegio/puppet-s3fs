@@ -28,7 +28,7 @@ class s3fs::params {
     }
   }
 
-  $s3_mount = hiera('s3_mount','')
+  $s3_mount = hiera('s3_mount')
 
   $user = $s3_mount[1]['user']
   $group = $s3_mount[1]['group']
