@@ -1,3 +1,6 @@
+Usage example
+
+```puppet
   class { 's3fs':
     tarball_url  => 'http://mydomain.com/s3fs/',
     s3fs_version => '1.78',
@@ -14,3 +17,4 @@
     mountpoint => '/mnt/mybucket',
     options    => 'passwd_file=/root/.passwd-s3fs,allow_other,use_sse=1',
   }
+```
