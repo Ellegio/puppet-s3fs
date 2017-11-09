@@ -1,16 +1,23 @@
-define s3fs::config( $bucket, $mountpoint, $options = 'allow_other,use_sse=1' ) {
+define s3fs::config (
+  $bucket,
+  $mountpoint,
+) {
 
   if !defined(File["$mountpoint"]) {
-    $path_parents = all_parents($mountpoint) 
+    $path_parents = all_parents($mountpoint)
     file { $path_parents:
       ensure => 'directory',
-     }
+      owner  => $user,
+      group  => $group,
+    }
     file { $mountpoint:
-      ensure => directory,
+      ensure => 'directory',
+      owner  => $user,
+      group  => $group,
     }
   }
 
-  mount {"s3mount-$name":
+  mount { "s3mount-$name":
     ensure   => mounted,
     device   => "s3fs#$bucket",
     name     => "$mountpoint",

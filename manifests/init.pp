@@ -8,12 +8,22 @@ class s3fs (
   $s3fs_pkg        = $::s3fs::params::s3_pkg,
   $dependency_pkgs = $::s3fs::params::dependency_pkgs,
   $conflict_pkgs   = $::s3fs::params::conflict_pkgs,
+  $accesskey       = $::s3fs::params::accesskey,
+  $secretkey       = $::s3fs::params::secretkey,
+  $bucket_name     = $::s3fs::params::bucket_name,
+  $mountpoint      = $::s3fs::params::mountpoint,
 ) inherits s3fs::params {
+
 
   anchor { '::s3fs::begin': } ->
   class { '::s3fs::dependencies': } ->
   class { '::s3fs::fuse': } ->
   class { '::s3fs::install': } ->
-  anchor { '::s3fs::end': }
+  anchor { '::s3fs::end': } ->
+  class { 's3fs::credentials': } ->
+  s3fs::config { $bucket_name:
+    bucket     => $bucket_name,
+    mountpoint => $mountpoint,
+  }
 
 }
