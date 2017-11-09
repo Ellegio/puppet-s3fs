@@ -11,6 +11,8 @@ class s3fs (
   $accesskey       = $::s3fs::params::accesskey,
   $secretkey       = $::s3fs::params::secretkey,
   $bucket_name     = $::s3fs::params::bucket_name,
+  $user            = $::s3fs::params::user,
+  $group           = $::s3fs::params::group,
   $mountpoint      = $::s3fs::params::mountpoint,
 ) inherits s3fs::params {
 
